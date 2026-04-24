@@ -293,10 +293,19 @@
 
 <script>
   function checkCredentials() {
-    const hallInput = document.getElementById("hallno").value.trim();
-    const dobInput = document.getElementById("dob").value;
+    const hallEl = document.getElementById("hallno");
+    const dobEl = document.getElementById("dob");
     const wrap = document.getElementById("wrapper");
     const wrongMsg = document.getElementById("wrong");
+
+    // Safety check to prevent null error
+    if (!hallEl || !dobEl || !wrap || !wrongMsg) {
+      console.error("One or more elements not found");
+      return;
+    }
+
+    const hallInput = hallEl.value.trim();
+    const dobInput = dobEl.value;
 
     if (hallInput === "23011A0518" && dobInput === "2004-04-30") {
       wrap.style.display = "block";
